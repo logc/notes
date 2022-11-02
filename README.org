@@ -5,4 +5,4 @@
 A set of notes written in org-mode
 
 * Contents
-** [[file:ds.org][Data Science with Scheme]]
+- [[file:ds.org][Data Science with Scheme]]
