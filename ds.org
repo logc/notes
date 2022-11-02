@@ -1,0 +1,26 @@
+#+TITLE: Data Science with Scheme
+#+AUTHOR: Luis Osa
+#+DATE: <2022-11-02 Wed>
+#+LANGUAGE: en
+
+This post is about performing some Data Science tasks with Scheme, specifically [[https://github.com/gambit/gambit][Gambit Scheme]]. Gambit is an interesting candidate to solve this kind of tasks because it has an [[https://github.com/gambit/python][interface to Python]] and its ecosystem of libraries.
+
+This document is written in org-mode, which is in itself an alternative to Jupiter notebooks. If you want to evaluate the code snippets, you can do so by opening this document in Emacs. Otherwise, you can copy and paste the snippets into a Gambit REPL and they should work the same (except maybe not displaying graphics inline).
+
+* Install Gambit
+
+Currently, the [[https://formulae.brew.sh/formula/gambit-scheme][Homebrew recipe for Gambit]] (=brew install gambit-scheme=) installs version 4.9.3, but [[https://github.com/gambit/gambit/releases/tag/v4.9.4][version 4.9.4]] has been released since January 2022. The older release has a bad interaction with [[https://github.com/emacsmirror/geiser][Geiser]], the Emacs package to interface with Scheme -- Geiser expects to find the latest Gambit. On top of that, the Homebrew recipe does not install by default the commands to start the REPL and compiler because their names clash with some Ghostscript binaries. Long story short, it's easier to just install Gambit from sources, like this:
+
+#+begin_src fish
+git clone git@github.com:gambit/gambit.git
+cd gambit
+set installPrefix /some/path
+mkdir -p $installPrefix
+CC=gcc-12 ./configure --prefix=$installPrefix --enable-single-host --enable-debug --enable-rtlib-debug-source --enable-march=native --enable-dynamic-clib
+CC=gcc-12 make bootstrap; and make bootclean; and make -j; and make install
+fish_add_path $installPrefix
+#+end_src
+
+Note:
+- the C compiler is specifically set to use =gcc= because the =configure= script complains otherwise about a very long compile time with LLVM compiler.
+- the snippet about is valid in Fish shell, but Bash or ZSH only require to change the =set= and the =fish_add_path= lines.
