@@ -7,7 +7,8 @@ This post is about performing some Data Science tasks with Scheme, specifically 
 
 This document is written in org-mode, which is in itself an alternative to Jupiter notebooks. If you want to evaluate the code snippets, you can do so by opening this document in Emacs. Otherwise, you can copy and paste the snippets into a Gambit REPL and they should work the same (except maybe not displaying graphics inline).
 
-* Install Gambit
+* Pre-requisites
+** Install Gambit
 
 Currently, the [[https://formulae.brew.sh/formula/gambit-scheme][Homebrew recipe for Gambit]] (=brew install gambit-scheme=) installs version 4.9.3, but [[https://github.com/gambit/gambit/releases/tag/v4.9.4][version 4.9.4]] has been released since January 2022. The older release has a bad interaction with [[https://github.com/emacsmirror/geiser][Geiser]], the Emacs package to interface with Scheme -- Geiser expects to find the latest Gambit. On top of that, the Homebrew recipe does not install by default the commands to start the REPL and compiler because their names clash with some Ghostscript binaries. Long story short, it's easier to just install Gambit from sources, like this:
 
@@ -24,3 +25,23 @@ fish_add_path $installPrefix
 Note:
 - the C compiler is specifically set to use =gcc= because the =configure= script complains otherwise about a very long compile time with LLVM compiler.
 - the snippet about is valid in Fish shell, but Bash or ZSH only require to change the =set= and the =fish_add_path= lines.
+** Install Python interface
+#+begin_src scheme
+(import (github.com/gambit/python))
+#+end_src
+
+#+RESULTS:
+#+begin_src scheme
+\import calendar
+(display (\calendar.month 2022 09))
+#+end_src
+
+#+RESULTS:
+
+* Download the MNIST dataset
+This is more or the less the "Hello World" of data science tutorials. Let's get to it.
+
+#+begin_src scheme
+(define mnist-url "http://yann.lecun.com/exdb/mnist/")
+
+#+end_src
