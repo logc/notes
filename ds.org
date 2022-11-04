@@ -2,6 +2,7 @@
 #+AUTHOR: Luis Osa
 #+DATE: <2022-11-02 Wed>
 #+LANGUAGE: en
+#+PROPERTY: header-args:scheme  :session *my-scheme*
 
 This post is about performing some Data Science tasks with Scheme, specifically [[https://github.com/gambit/gambit][Gambit Scheme]]. Gambit is an interesting candidate to solve this kind of tasks because it has an [[https://github.com/gambit/python][interface to Python]] and its ecosystem of libraries.
 
@@ -31,22 +32,18 @@ Notes:
 
 ** Install Python interface
 
-#+begin_src scheme :exports both
+#+begin_src scheme
 (import (_six python)
         (github.com/gambit/python))
-\import calendar
-(\calendar.month 2022 09)
 #+end_src
 
 #+RESULTS:
-:    September 2022\nMo Tu We Th Fr Sa Su\n          1  2  3  4\n 5  6  7  8  9 10 11\n12 13 14 15 16 17 18\n19 20 21 22 23 24 25\n26 27 28 29 30\n
+: #!void
 
-
-* Download the MNIST dataset
-
-This is the "Hello World" of data science tutorials. Let's get to it.
-
-#+begin_src scheme
-(define mnist-url "http://yann.lecun.com/exdb/mnist/")
-
+#+begin_src scheme :exports both
+\import calendar
+(\calendar.month 2022 10)
 #+end_src
+
+#+RESULTS:
+:     October 2022\nMo Tu We Th Fr Sa Su\n                1  2\n 3  4  5  6  7  8  9\n10 11 12 13 14 15 16\n17 18 19 20 21 22 23\n24 25 26 27 28 29 30\n31\n
